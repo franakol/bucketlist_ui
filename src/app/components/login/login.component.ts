@@ -1,4 +1,7 @@
 import { Component , OnInit} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import validateForms from 'src/app/helpers/validateform';
+
 
 @Component({
   selector: 'app-login',
@@ -10,10 +13,15 @@ export class LoginComponent {
   type: string = "password";
   isText: boolean = false;
   eyeIcon: String = "fa-eye-slash"
+  loginForm!: FormGroup;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void{
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    })
 
   }
   hideShowPass(){
@@ -23,5 +31,22 @@ export class LoginComponent {
 
   }
 
+  onSubmit(){
+    if(this.loginForm.valid){
+
+      console.log(this.loginForm.value)
+    //send the obj  to database
+    
+  }else{
+
+      
+       
+    //throw the error using toaster and with required fields
+    validateForms.validateAllFormFields(this.loginForm);
+    alert("Your form is invalid")
+    }
+  }
+
+ 
 
 }
