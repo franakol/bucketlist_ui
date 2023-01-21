@@ -1,0 +1,31 @@
+<nav class="nav flex-column">
+  <a class="nav-link active" routerLinkActive="active" routerLink="/dashboard">
+    <i class="fas fa-tachometer-alt nav-link-icon"></i>
+    <span class="nav-link-text"> Dashboard</span>
+  </a>
+  <a class="nav-link" href="#">
+    <i class="fa fa-plus-circle nav-link-icon"></i>
+    <span class="nav-link-text"> Create Bucketlist </span>
+  </a>
+  <a class="nav-link" href="#">
+    <i class="fa fa-eye nav-link-icon"></i>
+    <span class="nav-link-text"> Show BUcketlists</span>
+  </a>
+  <a class="nav-link" href="#">
+    <i class="fa fa-edit nav-link-icon"></i>
+    <span class="nav-link-text"> Update Bucketlist</span>
+  </a>
+  <a class="nav-link" href="#">
+    <i class="fa fa-trash nav-link-icon"></i>
+    <span class="nav-link-text"> Delete Bucketlist</span>
+  </a>
+  
+  <div class="nav-link">
+    <i class="fa fa-user nav-link-icon"></i>
+    <span class="nav-link-text"> Welcome, <b>{{username}}</b></span>
+  </div>
+   <div class="nav-link">
+    <i class="fa fa-sign-out nav-link-icon"></i>
+    <a class="nav-link-text" (click)="logout()"> Logout</a>
+  </div>
+</nav>

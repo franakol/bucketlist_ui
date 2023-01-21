@@ -1,0 +1,35 @@
+
+  
+  .navbar-brand {
+    color: rgb(37, 36, 36);
+    font-weight: bold;
+  }
+  
+ 
+
+  
+  .form-inline {
+    margin-right: 20px;
+    float: right;
+  }
+  
+  .form-control {
+    background-color: #e6e6e6;
+    border: none;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .btn-outline-success {
+    background-color: #1e90ff;
+    color: white;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #4169e1;
+  }
+  
+  
