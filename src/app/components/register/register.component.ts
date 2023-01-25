@@ -1,13 +1,14 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import validateForms from 'src/app/helpers/validateform';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
 
   type: string = "password";
@@ -15,7 +16,7 @@ export class RegisterComponent {
   eyeIcon: String = "fa-eye-slash"
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private auth : AuthService) {}
 
   ngOnInit(): void{
     this.registerForm = this.fb.group({
@@ -35,9 +36,22 @@ export class RegisterComponent {
   onRegister(){
     if(this.registerForm.valid){
 
-      
-    //perform logic for register
     console.log(this.registerForm.value)
+    // perform logic for register
+    this.auth.register(this.registerForm.value)
+    .subscribe({
+      next:(res)=>{
+        alert(res?.message ?? "unknown message")
+        // displays the message otherwise it will display "unknown message".
+      },
+      error:(err)=>{
+        alert(err?.error?.message ?? "unknown error") 
+        // displays the error message otherwise it will display "unknown error".
+
+      }
+    })
+   
+    
     
   }else{
 
