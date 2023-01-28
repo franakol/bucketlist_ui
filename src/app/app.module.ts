@@ -16,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
+
 
 
 
@@ -28,12 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     SidenavComponent,
   
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
     
 
      // * MATERIAL IMPORTS

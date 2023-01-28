@@ -1,35 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  
-  .navbar-brand {
-    color: rgb(37, 36, 36);
-    font-weight: bold;
-  }
-  
- 
 
-  
-  .form-inline {
-    margin-right: 20px;
-    float: right;
-  }
-  
-  .form-control {
-    background-color: #e6e6e6;
-    border: none;
-  }
-  
-  .form-control:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  .btn-outline-success {
-    background-color: #1e90ff;
-    color: white;
-  }
-  
-  .btn-outline-success:hover {
-    background-color: #4169e1;
-  }
-  
-  
+.main{
+  background-color: #eef0f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+.logo h1{
+  font-size: 38px;
+  color: rgb(21, 24, 190);
+}
+.nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.nav ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav ul li{
+  color: white;
+  margin: 0px 10px;
+  list-style: none;
+}
+.ig{
+  margin-left: 20px;
+
+}
+.ig img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.float{
+  position: absolute;
+  width: 230px;
+  background-color: rgb(167, 135, 135);
+  top: 70px;
+  right: 0px;
+  border-radius: 3px;
+  max-height: 0px;
+  transition: max-height 1s;
+  overflow: hidden;
+}
+/* Create one class not linked to html */
+.fin{
+  max-height: 250px;
+}
+.float hr{
+  background-color: rgb(150, 165, 165);
+}
+.profile{
+  display: flex;
+  align-items: center;
+  padding: 15px 10px 5px 10px;
+}
+.profile h4{
+  font-size: 14px;
+  margin-left: 10px;
+}
+.profile img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.ic{
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+}
+.ic p{
+  font-size: 14px;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: font-weight 1s;
+}
+.ic:hover p{
+  font-weight: 700;
+}
+.ic i{
+  font-size: 10px;
+  width: 18;
+  background-color: rgb(128, 128, 128, 0.573);
+  padding: 5px;
+  border-radius: 50%;
+  color: rgb(27, 16, 87);
+}
