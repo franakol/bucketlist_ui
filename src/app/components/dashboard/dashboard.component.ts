@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { BucketlistService } from 'src/app/services/bucketlist.service'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -8,19 +8,21 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent{
-  bucketlists: any[] = [];
-  // authService: any;
 
-   constructor(private router : Router) { }
+bucketlists: any;
+  
 
-  // ngOnInit() {
-  //   this.authService.getBucketlists().subscribe((data: any[]) => {
-  //     this.bucketlists = data;
-  //   });
+   constructor(private bucketlistService: BucketlistService, private router : Router) { }
+   
     
-  // }
-  createBucketlist() {
-     this.router.navigate(['/create-bucketlist']);
-
-}  
+  
+  ngOnInit() {
+  this.bucketlistService.getBucketlists().subscribe((data: any[]) => {
+    this.bucketlists = data;
+   });
+    
+   }
 }
+
+
+

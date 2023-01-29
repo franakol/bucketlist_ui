@@ -17,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BucketlistComponent } from './components/bucketlist/bucketlist.component';
 
 
 
@@ -30,6 +31,7 @@ import { RouterModule } from '@angular/router';
     DashboardComponent,
     HeaderComponent,
     SidenavComponent,
+    BucketlistComponent,
   
   
   ],
