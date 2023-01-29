@@ -15,6 +15,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { BucketlistComponent } from './components/bucketlist/bucketlist.component';
+
+
+
 
 
 @NgModule({
@@ -25,12 +31,17 @@ import { MatListModule } from '@angular/material/list';
     DashboardComponent,
     HeaderComponent,
     SidenavComponent,
+    BucketlistComponent,
+  
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    
 
      // * MATERIAL IMPORTS
      MatSidenavModule,

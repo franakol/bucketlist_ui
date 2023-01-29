@@ -18,7 +18,7 @@
                             <div class="form group pt-3">
                                 <div class="input-field" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
                                  <span class="fa fa-lock p-2"></span>
-                                 <input formControlName="Password" [type]="type" placeholder="Password">
+                                 <input formControlName="password" [type]="type" placeholder="Password">
                                  <span (click)="hideShowPass()"class="fa {{eyeIcon}}"></span>
                                 </div> 
                              </div>

@@ -1,15 +1,82 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Bucketlist Application</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+ <div class="main">
+  <div class="logo">
+    <h1>BUCKETLIST</h1>
+  </div>
+  <div class="nav">
+    <ul>
+      <li><a routerLink="/bucketlist">Create Bucketlist</a></li>
     
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-primary" type="submit">Search</button>
-      </form>
-      
+    </ul>
+    <div class="ig">
+      <img src="assets/img/user.png" id="navbar" alt="" />
     </div>
-</nav>
+    <div class="float" id="flow">
+      <div class="profile">
+        <img src="assets/img/user.png" alt="" />
+        <h4>Welcome, Francis</h4>
+      </div>
+      <hr />
+      <div class="ic">
+        <i class="fa-solid fa-table-columns"></i>
+        <p [routerLink]="['/dashboard']">Dashboard</p>
+      </div>
+      <div class="ic">
+        <i class="fas fa-edit"></i>
+        <p>Edit Profile</p>
+      </div>
+      <div class="ic">
+        <i class="fas fa-user"></i>
+        <p>Reset Password</p>
+      </div>
+      <div class="ic">
+        <span class="fa fa-lock"></span>
+        <p>Logout</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <header>
+  <div class="header-left">
+    <h1>BUCKETLIST APPLICATION</h1>
+  </div>
+  <div class="header-center">
+    <input type="text" placeholder="Search...">
+  </div>
+  <div class="header-right">
+    <ul>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Welcome
+      </a>
+    </ul>
+      <ul userProfileOptions class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li>
+          <i class="fa fa-sign-out nav-link-icon"></i>
+          <a class="dropdown-item" (click)="logout()"> Logout</a>
+          </li>
+        <li><a class="dropdown-item" (click)="resetPassword()">Reset Password</a></li>
+    
+      </ul>
+    
+    </div> -->
+
+
+    <!-- <div class="nav-link">
+      <i class="fa fa-user nav-link-icon"></i>
+      <span class="nav-link-text"> Welcome, <b>{{username}}</b></span>
+    </div>
+     <div class="nav-link">
+      <i class="fa fa-sign-out nav-link-icon"></i>
+      <a class="nav-link-text" (click)="logout()"> Logout</a>
+    </div> -->
+    
