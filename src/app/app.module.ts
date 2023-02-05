@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,15 +9,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BucketlistComponent } from './components/bucketlist/bucketlist.component';
+import { ItemsComponent } from './components/items/items.component';
 
 
 
@@ -32,6 +28,7 @@ import { BucketlistComponent } from './components/bucketlist/bucketlist.componen
     HeaderComponent,
     SidenavComponent,
     BucketlistComponent,
+    ItemsComponent,
   
   
   ],
@@ -41,17 +38,11 @@ import { BucketlistComponent } from './components/bucketlist/bucketlist.componen
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    FormsModule,
     
 
-     // * MATERIAL IMPORTS
-     MatSidenavModule,
-     MatToolbarModule,
-     MatMenuModule,
-     MatIconModule,
-     MatDividerModule,
-     MatListModule,
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

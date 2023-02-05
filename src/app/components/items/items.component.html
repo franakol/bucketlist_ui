@@ -1,0 +1,10 @@
+<h1>{{ title }}</h1>
+<form>
+    <input type="text" [(ngModel)]="newItem" name="newItem">
+    <button (click)="addItem()">Add</button>
+  </form>
+  
+  <ul>
+    <li *ngFor="let item of bucketList">{{ item }}</li>
+  </ul>
+  

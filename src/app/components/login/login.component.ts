@@ -1,5 +1,5 @@
 import { Component , OnInit} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import validateForms from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit{
   eyeIcon: String = "fa-eye-slash"
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router : Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router : Router) {}
 
   ngOnInit(): void{
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     })
 
@@ -35,35 +35,28 @@ export class LoginComponent implements OnInit{
 
   onLogin(){
     if(this.loginForm.valid){
+      const username = this.loginForm.value.username;
+      const password = this.loginForm.value.password;
 
-    console.log(this.loginForm.value)
-    // send the obj  to database
-    this.auth.login(this.loginForm.value)
-    .subscribe({
-      next:(res)=>{
-        alert(res?.message ?? "unknown message")
-        // displays the message otherwise it will display "unknown message".
+      const userDetails = localStorage.getItem('userDetails') || '[]';
+      console.log("user details from local storage", userDetails);
+      const users = JSON.parse(userDetails);
+      const user = users.find((user: { username: any; }) => user.username === username);
+
+      if (user && user.password === password) {
+        console.log("logged in user is navigated to the bucketlist")
+        alert("You are logged in!")
         this.loginForm.reset();
-        this.router.navigate(['dashboard'])
-
-      },
-      error:(err)=>{
-        alert(err?.error?.message ?? "unknown error")
-        // displays the error message otherwise it will display "unknown error".
-
+        this.router.navigate(['bucketlist'])
+      } else {
+        alert("Invalid email or password")
       }
-    })
-    
-  }else{
-
-      
-       
-    //throw the error using toaster and with required fields
-    validateForms.validateAllFormFields(this.loginForm);
-    alert("Your form is invalid")
+    } else {
+      validateForms.validateAllFormFields(this.loginForm);
+      alert("Your form is invalid")
     }
   }
-
+}
  
 
-}
+

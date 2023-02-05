@@ -1,28 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BucketlistService } from 'src/app/services/bucketlist.service'; 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent{
+export class DashboardComponent implements OnInit{
 
-bucketlists: any;
-  
+  bucketlists: any;
+  bucketlist: any;
+  selectedBucketlist: any;
 
-   constructor(private bucketlistService: BucketlistService, private router : Router) { }
-   
-    
-  
+
+  constructor(private router: Router) {}
+
   ngOnInit() {
-  this.bucketlistService.getBucketlists().subscribe((data: any[]) => {
-    this.bucketlists = data;
-   });
-    
-   }
-}
+    this.getBucketlists();
+  }
 
+  getBucketlists() {
+    const bucketlistData = localStorage.getItem('bucketlistData') || '[]';
+    this.bucketlists = JSON.parse(bucketlistData);
+    console.log(this.bucketlists);
+  }
 
+  deleteBucketlist(bucketlist: any) {
+    const index = this.bucketlists.indexOf(bucketlist);
+    this.bucketlists.splice(index, 1);
+  }
+
+  updateBucketlist(bucketlist: { name: string }) {
+    this.selectedBucketlist = bucketlist;
+    const popupContainer = document.getElementById('popupContainer');
+    if (popupContainer) {
+    popupContainer.style.display = 'block';
+    }
+    }
+
+  closePopup() {
+    const popupContainer = document.getElementById('popupContainer');
+    if (popupContainer) {
+    popupContainer.style.display = 'none';
+  }
+  }
+  saveBtn() {
+    const inputElement = <HTMLInputElement>document.getElementById('bucketNameInput');
+    const index = this.bucketlists.indexOf(this.selectedBucketlist);
+    this.bucketlists[index].name = inputElement.value;
+    localStorage.setItem('bucketlistData', JSON.stringify(this.bucketlists));
+    this.closePopup();
+    }
+  }
 

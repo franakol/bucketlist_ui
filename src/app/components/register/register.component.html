@@ -16,13 +16,6 @@
                              </div>
                              <small *ngIf="registerForm.controls['username'].dirty && registerForm.hasError('required', 'username')" class="text-danger">*username is required </small>
                             <div class="form group pt-3">
-                               <div class="input-field" [class.error]="registerForm.controls['email'].dirty && registerForm.hasError('required', 'email')">
-                                <span class="fa fa-envelope p-2"></span>
-                                <input formControlName="email" type="text" placeholder="Email">
-                               </div> 
-                            </div>
-                            <small *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required', 'email')" class="text-danger">*email is required </small>
-                            <div class="form group pt-3">
                                 <div class="input-field" [class.error]="registerForm.controls['password'].dirty && registerForm.hasError('required', 'password')">
                                  <span class="fa fa-lock p-2"></span>
                                  <input formControlName="password" [type]="type" placeholder="Password">

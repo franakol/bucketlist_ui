@@ -10,16 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UserGuard implements CanActivate {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
-  canActivate(){
-   const  isUser = true;
-
-   if(isUser){
-    return true;
-   }
-   else{
+  canActivate():boolean{
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    this.router.navigate(['/login']);
     return false;
    }
     
   }
   
-}
+
