@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import validateForms from 'src/app/helpers/validateform';
-import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -17,12 +17,11 @@ export class RegisterComponent implements OnInit{
   eyeIcon: String = "fa-eye-slash"
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth : AuthService, private router : Router) {}
+  constructor(private fb: FormBuilder, private router : Router) {}
 
   ngOnInit(): void{
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      email: ['', Validators.required],
       password: ['', Validators.required]
     })
 
@@ -35,39 +34,25 @@ export class RegisterComponent implements OnInit{
 
   }
   onRegister(){
-    if(this.registerForm.valid){
-
-    console.log(this.registerForm.value)
-    // perform logic for register
-    this.auth.register(this.registerForm.value)
-    .subscribe({
-      next:(res)=>{
-        alert(res?.message ?? "unknown message")
-        // displays the message otherwise it will display "unknown message".
-        this.registerForm.reset();
-        this.router.navigate(['login'])
-      },
-      error:(err)=>{
-        alert(err?.error?.message ?? "unknown error") 
-        // displays the error message otherwise it will display "unknown error".
-
-      }
-    })
-   
-    
-    
-  }else{
-
-      
-       
-    //logic for throwing error
-    validateForms.validateAllFormFields(this.registerForm);
-    alert("Your form is invalid")
+    if (this.registerForm.valid){
+      const { username, password } = this.registerForm.value;
+      const userDetails = localStorage.getItem('userDetails') || '[]';
+      const users = JSON.parse(userDetails);
+      users.push({ username, password });
+      localStorage.setItem('userDetails', JSON.stringify(users));
+      this.registerForm.reset();
+      this.router.navigate(['login']);
+    }else{
+      //logic for throwing error
+      validateForms.validateAllFormFields(this.registerForm);
+      alert("Your form is invalid")
     }
   }
+  }
+
 
   
- }
+ 
 
 
 

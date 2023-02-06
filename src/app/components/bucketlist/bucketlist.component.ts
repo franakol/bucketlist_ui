@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import validateForms from 'src/app/helpers/validateform';
-import { BucketlistService } from 'src/app/services/bucketlist.service';
+import { bucketlistData } from './bucket';
 
 @Component({
   selector: 'app-bucketlist',
@@ -12,32 +12,40 @@ import { BucketlistService } from 'src/app/services/bucketlist.service';
 export class BucketlistComponent implements OnInit {
 
   bucketlistForm!: FormGroup;
+  private bucketlists: bucketlistData[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router, private bucketlist: BucketlistService) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+
     this.bucketlistForm = this.fb.group({
       name: ['', Validators.required]
     });
+
   }
 
-  onCreate() {
+  
+  onCreateBucketlist() {
     if (this.bucketlistForm.valid) {
-    this.bucketlist.create(this.bucketlistForm.value)
-    .subscribe({
-        next:(res)=>{
-          alert(res?.message ?? "unknown message")
-          this.bucketlistForm.reset();
-          this.router.navigate(['/bucketlists'])
-        },
-        error:(err)=> {
-          alert(err?.error?.message ?? "unknown error")
-        }
-    })
-  } else {
-      validateForms.validateAllFormFields(this.bucketlistForm);
-      alert("Your form is invalid")
-    }
-  }
+    const name = this.bucketlistForm.value.name;
+    const bucketlistData = localStorage.getItem('bucketlistData') || '[]';
+    const bucketlists = JSON.parse(bucketlistData);
+    const existingBucketlist = bucketlists.find((bucketlist: { name: any; }) => bucketlist.name === name);
 
+    if (existingBucketlist) {
+      alert("A bucketlist with this name already exists");
+      return;
+    }
+    const bucket_id = bucketlists.length + 1; // Generate unique bucket_id
+    bucketlists.push({bucket_id, name});
+    localStorage.setItem('bucketlistData', JSON.stringify(bucketlists));
+    this.bucketlistForm.reset();
+    alert("Bucketlist created successfully");
+    } else {
+    validateForms.validateAllFormFields(this.bucketlistForm);
+    alert("Your form is invalid");
+    }
+    }
+    
+    
 }

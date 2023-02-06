@@ -1,31 +1,36 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
+import { Injectable } from '@angular/core';
+
+
+
+interface userDetails{
+  username: string;
+  password: string;
+  
+}
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class AuthService {
 
-  private baseurl:string="http://127.0.0.1:8082/auth/"
-  constructor(private http : HttpClient) { }
+   private users : userDetails[] = [];
 
-  register(userobj: any): Observable<any>{
-    return this.http.post<any> (`${this.baseurl}register`, userobj).pipe(
-      map(data => {
-        return data;
-      }))
+  constructor() { }
 
-    
+
+  register(userDetails: userDetails) {
+    this.users.push(userDetails);
+    return true;
   }
 
-  login(loginobj:any): Observable<any>{
-    return this.http.post<any> (`${this.baseurl}login`,loginobj).pipe(
-      map(data => {
-        return data;
-      }))
-
-
+  login(userDetails: userDetails) {
+    const foundUser = this.users.find(user => user.username === userDetails.username && user.password === userDetails.password);
+    if (foundUser) {
+      return true;
+    }
+    return false;
   }
+
 }
