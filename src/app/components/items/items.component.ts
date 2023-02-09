@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute} from '@angular/router';
-import validateForms from 'src/app/helpers/validateform';
-import { itemData } from '../bucketlist/bucket';
+import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -10,24 +8,26 @@ import { itemData } from '../bucketlist/bucket';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-  title!: string;
-  newItem!: string;
-  bucketList: string[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+    bucketlists: any;
+    bucketName: any;
+    bucketlist: any;
+    selectedBucketlistName!: string;
+    itemName!: string;
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    const bucketName = this.route.snapshot.paramMap.get('bucketName');
-    this.title = bucketName ? bucketName : '';
-    const storedList = localStorage.getItem(this.title);
-    if (storedList) {
-      this.bucketList = JSON.parse(storedList);
-    }
-  }
+    this.selectedBucketlistName = this.route.snapshot.paramMap.get('name') || 'Default Value';
+    this.itemName = this.route.snapshot.paramMap.get('itemName') || 'Add Item'
 
-  addItem() {
-    this.bucketList.push(this.newItem);
-    localStorage.setItem(this.title, JSON.stringify(this.bucketList));
-    this.newItem = '';
+
   }
+  addItem(bucketlist: { name: any; }, itemName: any) {
+    this.router.navigate(['/items', {name: bucketlist.name, itemName: itemName}]);
+  }
+  
+ 
+    
 }
+

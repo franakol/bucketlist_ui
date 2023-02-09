@@ -40,6 +40,8 @@ export class RegisterComponent implements OnInit{
       const users = JSON.parse(userDetails);
       users.push({ username, password });
       localStorage.setItem('userDetails', JSON.stringify(users));
+
+
       this.registerForm.reset();
       this.router.navigate(['login']);
     }else{

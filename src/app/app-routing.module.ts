@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'bucketlist', component: BucketlistComponent},
-  {path: 'items/:bucketName', component: ItemsComponent},
+  {path: 'items', component: ItemsComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
  
   

@@ -1,23 +1,30 @@
 <div class="outer">
 <div class="container-fluid page">
-    <div class="d-flex page__box p-3 mt-2">Dashboard</div>
+  <div style="color:antiquewhite;">List of Buckets</div>
+
     <div class="page__content shadow p-5 position-relative">
-      <div class="page__content-data position-absolute text-center">
+      <div class="page__content-data position-absolute">
 
         <div class="table-container">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th style="width:70%">Bucket Name</th>
+                <th style="width:40%">Bucket Name</th>
+                <th style="width:15%">Date Created</th>
+                <th style="width:15%">Date Updated</th>
                 <th style="width:50%">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let bucketlist of bucketlists">
+              <tr *ngFor="let bucketlist of bucketlists | paginate: { itemsPerPage: 4, currentPage: p }">
                 <td>{{bucketlist.name}}</td>
+                <td>{{bucketlist.date_created | date}}</td>
+                <td>{{bucketlist.date_updated | date}}</td>
                 <td>
-                  <button class="btn btn-success mx-2" routerLink="/items/:bucketName"><i class="fa fa-plus-square"></i></button>
+                  <button class="btn btn-success mx-2" (click)="addItem(bucketlist)"><i class="fa fa-plus-square"></i></button>
+
                   <button class="btn btn-primary mx-2" (click)="updateBucketlist(bucketlist)"><i class="fa fa-edit"></i></button>
+
                   <div id="popupContainer" style="display:none;">
                     <div id="popupWindow">
                       <div id="popupHeader">
@@ -25,7 +32,8 @@
                         <h3>Update Bucket</h3>
                       </div>
                       <div id="popupBody">
-                        <p>Bucket Name: <input type="text" id="bucketNameInput" [(ngModel)]="bucketlist.name"></p>
+                        <p *ngIf="selectedBucketlist">Bucket Name: <input type="text" id="bucketNameInput" [(ngModel)]="selectedBucketlist.name"></p>
+
                       </div>
                       <div id="popupFooter">
                         <button class ="saveBtn btn btn-primary btn-block mt-4 w-50" (click)="saveBtn()">Save</button>
@@ -38,6 +46,7 @@
               </tr>
             </tbody>
           </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <div class="text-center pt-4 text-muted">No Bucketlists? <a id="forget" routerLink="/bucketlist">Create</a></div>
       </div>
         

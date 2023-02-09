@@ -14,6 +14,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BucketlistComponent } from './components/bucketlist/bucketlist.component';
 import { ItemsComponent } from './components/items/items.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -39,6 +40,7 @@ import { ItemsComponent } from './components/items/items.component';
     HttpClientModule,
     RouterModule,
     FormsModule,
+    NgxPaginationModule,
     
 
   ],

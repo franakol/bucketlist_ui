@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { bucketlistData } from '../components/bucketlist/bucket';
 
 
-interface Item{
-  item_id: number;
-  name: string
-}
-interface bucketlistData {
-  bucket_id: number;
-  name: string;
-}
+// interface Item{
+//   item_id: number;
+//   name: string
+// }
+// interface bucketlistData {
+//   bucket_id: number;
+//   name: string;
+// }
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BucketlistService {
 
+  number = Math.floor(Math.random() * 99999);
+
   private bucketlists: bucketlistData[] = [];
 
+  private selectedBucketlistName = new BehaviorSubject('');
+  selectedBucketlistName$ = this.selectedBucketlistName.asObservable();
+
+
   constructor() { }
+
+  setSelectedBucketlistName(name: string) {
+    this.selectedBucketlistName.next(name);
+  }
 
   createBucketlist(bucketlistData: bucketlistData) {
     this.bucketlists.push(bucketlistData);
@@ -44,6 +57,11 @@ export class BucketlistService {
       return true;
     }
     return false;
+  }
+
+  public getNumber() {
+    console.log({number: this.number})
+    return this.number;
   }
 
   // addItem(bucketlistId: number, item: any) {

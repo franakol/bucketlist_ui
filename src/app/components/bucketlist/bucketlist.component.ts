@@ -37,10 +37,13 @@ export class BucketlistComponent implements OnInit {
       return;
     }
     const bucket_id = bucketlists.length + 1; // Generate unique bucket_id
-    bucketlists.push({bucket_id, name});
+    const date_created = new Date().toISOString();
+    const date_updated = date_created;
+    bucketlists.unshift({bucket_id, name, date_created, date_updated, items: []});
     localStorage.setItem('bucketlistData', JSON.stringify(bucketlists));
     this.bucketlistForm.reset();
-    alert("Bucketlist created successfully");
+    this.router.navigate(['dashboard'])
+    // alert("Bucketlist created successfully");
     } else {
     validateForms.validateAllFormFields(this.bucketlistForm);
     alert("Your form is invalid");
