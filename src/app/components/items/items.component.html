@@ -1,10 +1,9 @@
-<h1>{{ title }}</h1>
-<form>
-    <input type="text" [(ngModel)]="newItem" name="newItem">
-    <button (click)="addItem()">Add</button>
-  </form>
-  
-  <ul>
-    <li *ngFor="let item of bucketList">{{ item }}</li>
-  </ul>
+<h2>{{selectedBucketlistName}}</h2>
+<td>
+    <input type="text" [(ngModel)]="itemName">
+    <button class="btn btn-success mx-2" (click)="addItem(bucketlist, itemName)">
+      <i class="fa fa-plus-square"></i>
+    </button>
+    ...
+  </td>
   

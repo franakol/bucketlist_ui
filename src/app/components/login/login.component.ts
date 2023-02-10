@@ -38,18 +38,23 @@ export class LoginComponent implements OnInit{
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
 
-      const userDetails = localStorage.getItem('userDetails') || '[]';
+      const userDetails = JSON.parse(localStorage.getItem('userDetails') || '[]');
       console.log("user details from local storage", userDetails);
-      const users = JSON.parse(userDetails);
-      const user = users.find((user: { username: any; }) => user.username === username);
+      const user = userDetails.find((user: { username: any; }) => user.username === username);
+
+      if (localStorage.getItem('loggedInUser')) {
+        console.log('logging out current user');
+        localStorage.removeItem('loggedInUser');
+      }
 
       if (user && user.password === password) {
         console.log("logged in user is navigated to the bucketlist")
-        alert("You are logged in!")
+        // alert("You are logged in!")
         this.loginForm.reset();
-        this.router.navigate(['bucketlist'])
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
+        this.router.navigate(['dashboard'])
       } else {
-        alert("Invalid email or password")
+        alert("Invalid username or password")
       }
     } else {
       validateForms.validateAllFormFields(this.loginForm);
